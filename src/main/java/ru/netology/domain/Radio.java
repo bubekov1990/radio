@@ -1,63 +1,103 @@
 package ru.netology.domain;
 
 public class Radio {
-    // Требования к работе с радиостанциями:
-    private int currentStationNumber = 0;
-    private int currentVolume = 0;
 
-    public int getCurrentStationNumber() {
-        return currentStationNumber;
+    private int amount = 10 ;
+    private int minTrack = 0;
+    private int currentTrack;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume;
+    private int maxTrack = 9;
+
+
+    public Radio() {
+
+    }
+
+    public Radio(int amount) {
+        this.amount = amount;
+    }
+
+    public int getMinTrack() {
+        return minTrack;
+    }
+
+    public int getMaxTrack() {
+        this.maxTrack = amount - 1;
+        return maxTrack;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+    public int getMaxVolume(){
+        return maxVolume;
     }
 
     public int getCurrentVolume() {
         return currentVolume;
     }
-
-    public void setCurrentStationNumber(int NewCurrentStationNumber) {
-        if (NewCurrentStationNumber > 9) {
-            return;
-        }
-        if (NewCurrentStationNumber < 0) {
-            return;
-        }
-        this.currentStationNumber = NewCurrentStationNumber;
+    public int getAmount() {
+        return amount;
     }
 
-    public void next() {
-        if (currentStationNumber == 9) {
-            setCurrentStationNumber(0);
-        } else {
-            setCurrentStationNumber(currentStationNumber + 1);
+    public int setCurrentVolume(int currentVolume) {
+        if (currentVolume > 0 & currentVolume < 100) {
+            this.currentVolume = currentVolume;
+            return currentVolume;
         }
+        return maxVolume;
     }
 
-    public void prev() {
-        if (currentStationNumber == 0) {
-            setCurrentStationNumber(9);
-        } else {
-            setCurrentStationNumber(currentStationNumber - 1);
-        }
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 10) {
-            return;
-        }
-        if (newCurrentVolume < 0) {
-            return;
-        }
-        this.currentVolume = newCurrentVolume;
-    }
-
-    public void volumeUp() {
-        if (currentVolume < 10) {
-            this.currentVolume = currentVolume + 1;
-        }
-    }
-
-    public void volumeDown() {
+    public void lowerVolume() {
         if (currentVolume > 0) {
             this.currentVolume = currentVolume - 1;
         }
+
     }
+
+    public int increaseVolume(int currentVolume) {
+        if (currentVolume < 100) {
+            this.currentVolume = currentVolume + 1;
+            return this.currentVolume;
+        }
+        return maxVolume;
+    }
+
+    public int getCurrentTrack() {
+        return currentTrack;
+    }
+
+    public int setCurrentTrack(int currentTrack) {
+        if (currentTrack >= 0 & currentTrack <= amount -1) {
+            this.currentTrack = currentTrack;
+        } else {
+            this.currentTrack = 0;
+        }
+        return this.currentTrack;
+    }
+
+
+
+
+    public void nextTrack() {
+        if (currentTrack > 0) {
+            currentTrack++;
+        } else {
+            this.currentTrack = getMaxTrack();
+        }
+    }
+
+    public void prevTrack() {
+        if (currentTrack < 9) {
+            currentTrack--;
+        } else {
+            this.currentTrack = getMinTrack();
+        }
+    }
+
 }
+
+
+
