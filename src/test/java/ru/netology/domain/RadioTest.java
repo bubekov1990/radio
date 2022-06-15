@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
 
+    Radio radio = new Radio();
+
     @Test
     void shouldReturnWhenSetCurrentStationNumberTo10() {
         Radio radio = new Radio();
